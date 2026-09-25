@@ -1,0 +1,58 @@
+{
+  "couple": {
+    "groom": "Enis",
+    "bride": "Zainab",
+    "display_names": "Enis & Zainab",
+    "monogram": "E & Z"
+  },
+  "event": {
+    "title": "Hochzeit / Nikah Einladung",
+    "date_iso": "2026-10-02T19:30:00+02:00",
+    "day": "Freitag",
+    "date_display": "02.10.2026",
+    "time_display": "19:30 Uhr",
+    "scratch_day": "02",
+    "scratch_month": "Oktober",
+    "scratch_year": "2026",
+    "location_name": "Islamisches Zentrum Zürich",
+    "google_maps_query": "Islamisches Zentrum Zürich"
+  },
+  "theme": {
+    "background": "#FDFBF7",
+    "gold": "#D4AF37",
+    "espresso": "#2B2625",
+    "pastels": [
+      { "name": "Flieder", "hex": "#DCCFE8" },
+      { "name": "Salbei", "hex": "#C9D6C2" },
+      { "name": "Altrosa", "hex": "#E9C9C8" },
+      { "name": "Champagner", "hex": "#E8D9B5" }
+    ]
+  },
+  "timeline": [
+    {
+      "time": "19:30",
+      "title": "Empfang der Gäste"
+    },
+    {
+      "time": "20:00",
+      "title": "Feierliche Zeremonie / Trauung"
+    },
+    {
+      "time": "21:00",
+      "title": "Festliches Abendessen"
+    },
+    {
+      "time": "22:30",
+      "title": "Feier & Ausklang"
+    }
+  ],
+  "dresscode": {
+    "title": "Dresscode",
+    "description": "Elegante festliche Kleidung in hellen, edlen oder sanften Farbtönen. Pastellfarben sind willkommen."
+  },
+  "rsvp": {
+    "enabled": true,
+    "mode": "lightweight",
+    "note": "For v1, a simple WhatsApp contact CTA or mailto link is acceptable."
+  }
+}
