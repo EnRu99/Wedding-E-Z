@@ -83,15 +83,10 @@ The repository is ready. `.github/workflows/pages.yml` publishes only
 GitHub serve the files unchanged. The page has `noindex`, so search engines
 leave it alone.
 
-One step in GitHub has to be done by the repository owner:
+GitHub Pages is switched on (Source: GitHub Actions), and every push to the
+branch updates the site automatically. The workflow can also be started by hand
+under **Actions → Publish invitation → Run workflow**.
 
-1. GitHub Pages needs either a **public** repository or a paid plan (GitHub Pro).
-   This repository is currently private.
-2. Open **Settings → Pages** and under *Build and deployment → Source* choose
-   **GitHub Actions**.
-3. Open **Actions → Publish invitation → Run workflow** once. After that, every
-   push to the branch updates the site automatically.
-
-The invitation is then at **https://enru99.github.io/Wedding-E-Z/**. The link
+The invitation is live at **https://enru99.github.io/Wedding-E-Z/**. The link
 preview image in `index.html` (`og:image`) points to that address; if the site
 ends up somewhere else, update the two `og:` URLs.
