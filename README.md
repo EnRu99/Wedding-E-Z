@@ -1,18 +1,20 @@
 # Enis & Zainab — Digital Wedding Invitation
 
 An interactive, mobile-first wedding invitation for the Nikah of Enis & Zainab
-(Freitag, 02.10.2026, 19:30 Uhr, Islamisches Zentrum Zürich).
+(Freitag, 02.10.2026 · 20. Rabīʿ ath-Thānī 1448, 19:30 Uhr, Kurt-Früh-Weg 4, 8050 Zürich).
 
 The guest sees a sealed envelope, taps the E & Z wax seal to open it, and then
-scrolls through the invitation: welcome, scratch-to-reveal date, Bismillah and
-Qur'an verses, invitation text with the fingerprint union, timeline, live
-countdown, location, dresscode and RSVP.
+scrolls through the invitation: welcome (with their childhood photo),
+scratch-to-reveal date, Bismillah and Qur'an verses, invitation text with the
+fingerprint union, timeline, live countdown, location and a short Rückmeldung
+note. Soft background music starts with the seal tap.
 
 ## It is a static site
 
 - `index.html`: the whole invitation (HTML, CSS and JavaScript in one file)
-- `assets/fonts/`: self-hosted fonts (Great Vibes, Cormorant Garamond, Amiri Quran; all SIL Open Font License)
-- `assets/README_AUDIO.txt`: how to add music later
+- `assets/fonts/`: self-hosted fonts (Great Vibes with an Alex Brush "Z", Cormorant Garamond, Amiri Quran; all SIL Open Font License)
+- `assets/images/enis-zainab-kindheit.jpg`: the childhood photo shown in the welcome arch
+- `assets/music.mp3`: background music (see `assets/README_AUDIO.txt`)
 - `source_material/`: the original brief, content copy and reference images (not used by the page)
 
 There is no framework, no build step, no backend and no `npm install`. All paths
@@ -37,9 +39,10 @@ The envelope appears on every fresh load. Reload the page to see it again.
 ## Where to edit the event data
 
 All wedding data lives in one object, `window.WEDDING`, at the top of
-`index.html`. It holds the names and monogram, the date and time (`event.start`
-is the countdown target, `2026-10-02T19:30:00+02:00`), the venue, the scratch
-fields, the timeline, the dresscode colours, the RSVP contact and the music.
+`index.html`. It holds the names and monogram, the date, Hijri date and time
+(`event.start` is the countdown target, `2026-10-02T19:30:00+02:00`), the scratch
+fields, the timeline, the address and parking note, the Rückmeldung sentence and
+the music settings.
 The Qur'an text itself is kept verbatim in the HTML, taken from
 `source_material/CONTENT_COPY.md`.
 
@@ -55,23 +58,20 @@ foil fades away. When all three are revealed, a single soft gold shimmer runs
 across the date. **Datum vollständig anzeigen** reveals everything without
 dragging, for accessibility.
 
-## Music (intentionally absent)
+## Music
 
-No music file is included yet, and none is loaded. The music button stays
-hidden. To add music later, put the file at `./assets/music.mp3` and set
-`music.src: './assets/music.mp3'` in the `WEDDING` config. Playback then starts
-with the seal tap, and a play/pause button appears. See
-`assets/README_AUDIO.txt` for details.
+`assets/music.mp3` never plays on page load. It starts when the guest taps the
+wax seal (browsers, especially iPhone Safari, only allow sound after a tap),
+fades in softly and loops. A small play/pause button then appears in the
+bottom-right corner. If a browser blocks playback, the invitation still opens
+and the button lets the guest start the music. Settings are in `WEDDING.music`
+(`src: ''` switches the music off). See `assets/README_AUDIO.txt`.
 
 ## Still to be configured
 
-- **RSVP**: no contact was supplied, so the reply buttons are hidden and a
-  dashed "Vorschau-Hinweis" box marks the gap. Fill in `rsvp.whatsapp`
-  (international digits, e.g. `41791234567`) and/or `rsvp.email` to show the
-  buttons. They open a pre-filled WhatsApp message or e-mail. There is no
-  backend and no fake form.
-- **Location**: the Maps button searches "Islamisches Zentrum Zürich". For
-  certainty, paste the exact Google Maps share link into `location.mapsUrl`.
+- **Location**: the Maps button searches for "Kurt-Früh-Weg 4, 8050 Zürich".
+  To point at an exact place, paste a Google Maps share link into
+  `location.mapsUrl`.
 
 ## Publishing (later, only after approval)
 

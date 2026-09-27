@@ -31,8 +31,8 @@ window.WEDDING = {
     timeZone: 'Europe/Zurich',
     weekday: 'Freitag',
     dateDisplay: '02.10.2026',
+    hijriDisplay: '20. Rabīʿ ath-Thānī 1448',
     timeDisplay: '19:30 Uhr',
-    venue: 'Islamisches Zentrum Zürich',
     // How long after the start the countdown shows the "today" message
     // before switching to the thank-you message.
     celebrationHours: 6
@@ -45,12 +45,10 @@ window.WEDDING = {
     { label: 'Jahr',  value: '2026' }
   ],
 
-  // Timeline. motif: 'arch' | 'rings' | 'dinner' | 'lantern'
+  // Ablauf. motif: 'rings' | 'arch' | 'lantern' | 'dinner'; note is optional.
   timeline: [
-    { time: '19:30', title: 'Empfang der Gäste',              motif: 'arch' },
-    { time: '20:00', title: 'Feierliche Zeremonie / Trauung', motif: 'rings' },
-    { time: '21:00', title: 'Festliches Abendessen',          motif: 'dinner' },
-    { time: '22:30', title: 'Feier & Ausklang',               motif: 'lantern' }
+    { time: '19:45', title: 'Trauung', motif: 'rings' },
+    { time: '20:15', title: 'Apéro', note: 'anschliessend bei mir zuhause', motif: 'arch' }
   ],
 
   countdown: {
@@ -59,50 +57,52 @@ window.WEDDING = {
   },
 
   location: {
-    name: 'Islamisches Zentrum Zürich',
-    mapsQuery: 'Islamisches Zentrum Zürich',
+    street: 'Kurt-Früh-Weg 4',
+    city: '8050 Zürich',
+    parking: 'In der weissen Zone oder im Parkhaus gegenüber.',
+    mapsQuery: 'Kurt-Früh-Weg 4, 8050 Zürich',
     mapsUrl: ''                     // optional: exact Google Maps share link (overrides mapsQuery)
   },
 
-  dresscode: {
-    text: 'Wir freuen uns über elegante festliche Kleidung in hellen, sanften oder edlen Farbtönen.',
-    colors: [
-      { name: 'Flieder',    hex: '#DCCFE8' },
-      { name: 'Salbei',     hex: '#C9D6C2' },
-      { name: 'Altrosa',    hex: '#E9C9C8' },
-      { name: 'Champagner', hex: '#E8D9B5' }
-    ]
-  },
-
-  // RSVP — intentionally NOT configured yet. No contact details were supplied.
-  // Fill in one or both to show the reply buttons, e.g.
-  //   whatsapp: '41791234567'   (international format, digits only)
-  //   email:    'name@example.ch'
   rsvp: {
-    whatsapp: '',
-    email: '',
-    deadline: '',                   // optional, e.g. 'bis zum 20.09.2026'
-    message: 'Assalamu alaikum! Gerne geben wir Rückmeldung zur Hochzeit von Enis & Zainab am 02.10.2026:\n\nName(n): \nWir kommen: Ja / Nein\nAnzahl Personen: '
+    text: 'Bitte gebt demjenigen kurz Bescheid, von dem ihr den Link erhalten habt.'
   },
 
-  // Background music — intentionally absent for now.
-  // To enable: put the file at ./assets/music.mp3 and set src: './assets/music.mp3'.
-  // Playback starts when the guest taps the wax seal; a play/pause button appears.
+  // Background music. Never plays on page load: it starts softly when the guest
+  // taps the wax seal, then a small play/pause button appears.
+  // The file is pre-levelled (−6 dB) so it also stays in the background on iPhones,
+  // where websites cannot set the volume; `volume` applies on desktop and Android.
+  // Set src: '' to switch the music off.
   music: {
-    src: '',
-    volume: 0.6
+    src: './assets/music.mp3',
+    volume: 0.8,
+    fadeInSeconds: 3
   }
 };
 </script>
 
 <style>
 /* ---------- Fonts (self-hosted, SIL Open Font License) ---------- */
-@font-face { font-family: 'Great Vibes'; font-style: normal; font-weight: 400; font-display: block;
-  src: url('./assets/fonts/great-vibes-latin.woff2') format('woff2'); }
+/* "EZ Script" = Great Vibes, with the capital Z taken from Alex Brush:
+   Great Vibes' Z curls into a loop that reads almost like an "L". */
+@font-face { font-family: 'EZ Script'; font-style: normal; font-weight: 400; font-display: block;
+  src: url('./assets/fonts/great-vibes-latin.woff2') format('woff2');
+  unicode-range: U+0000-0059, U+005B-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'EZ Script'; font-style: normal; font-weight: 400; font-display: block;
+  src: url('./assets/fonts/alex-brush-latin.woff2') format('woff2');
+  unicode-range: U+005A; }
 @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300 700; font-display: swap;
-  src: url('./assets/fonts/cormorant-garamond-latin.woff2') format('woff2'); }
+  src: url('./assets/fonts/cormorant-garamond-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300 700; font-display: swap;
+  src: url('./assets/fonts/cormorant-garamond-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2C60-2C7F, U+A720-A7FF; }
 @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 300 700; font-display: swap;
-  src: url('./assets/fonts/cormorant-garamond-italic-latin.woff2') format('woff2'); }
+  src: url('./assets/fonts/cormorant-garamond-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 300 700; font-display: swap;
+  src: url('./assets/fonts/cormorant-garamond-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2C60-2C7F, U+A720-A7FF; }
 @font-face { font-family: 'Amiri Quran'; font-style: normal; font-weight: 400; font-display: block;
   src: url('./assets/fonts/amiri-quran-arabic.woff2') format('woff2');
   unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC; }
@@ -124,9 +124,8 @@ window.WEDDING = {
   --gold-line: #C9AC66;     /* hairlines */
   --gold-pale: #EADCB8;
   --foil: linear-gradient(118deg, #8E6C27 0%, #B8943F 22%, #D9BE78 42%, #B08C3A 58%, #CFB26A 78%, #94722B 100%);
-  --sage: #C9D6C2; --lavender: #DCCFE8; --rose: #E9C9C8; --champagne: #E8D9B5;
 
-  --f-script: 'Great Vibes', 'Snell Roundhand', 'Apple Chancery', cursive;
+  --f-script: 'EZ Script', 'Snell Roundhand', 'Apple Chancery', cursive;
   --f-serif: 'Cormorant Garamond', 'Cormorant', 'EB Garamond', Garamond, 'Times New Roman', serif;
   --f-arabic: 'Amiri Quran', 'Amiri', 'Geeza Pro', 'Traditional Arabic', 'Noto Naskh Arabic', serif;
 
@@ -359,24 +358,32 @@ a { color: inherit; }
   text-align: center;
   background: radial-gradient(70% 45% at 50% 34%, rgba(236,214,164,.28), rgba(236,214,164,0) 70%);
 }
-.hero-arch { width: min(84%, 350px); height: clamp(440px, 64svh, 560px); }
+.hero-arch { display: flex; flex-direction: column; width: min(86%, 350px); min-height: clamp(460px, 66svh, 610px); }
 .sprig { position: absolute; bottom: -8px; width: 34%; max-width: 124px; aspect-ratio: 1; color: var(--gold-line); opacity: .9; pointer-events: none; }
 .sprig-l { left: -13%; }
 .sprig-r { right: -13%; scale: -1 1; }
 .hero-arch .arch-content {
-  height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 26% 8% 16%;
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 11% 5% 12%;
 }
-.hero .star8 { width: 22px; height: 22px; color: var(--gold-line); margin-bottom: 26px; }
-.hero-names { margin: 18px 0 0; font-weight: 400; outline: none; }
-.hero-names .name {
-  display: block; font-family: var(--f-script);
-  font-size: clamp(58px, 17vw, 74px); line-height: 1.02;
-  padding: .06em .25em .12em;                     /* room for the swashes inside the foil fill */
+/* childhood photo: a soft, warm vignette that melts into the paper under the arch */
+.hero-photo { position: relative; margin: 0; width: min(100%, 310px, calc(41svh * .933)); aspect-ratio: 840 / 900; mix-blend-mode: multiply; }
+.hero-photo img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  filter: sepia(.32) saturate(.74) contrast(.9) brightness(1.07);
+  -webkit-mask-image: radial-gradient(closest-side, #000 36%, rgba(0,0,0,.82) 52%, rgba(0,0,0,.42) 72%, rgba(0,0,0,.12) 88%, transparent 100%);
+          mask-image: radial-gradient(closest-side, #000 36%, rgba(0,0,0,.82) 52%, rgba(0,0,0,.42) 72%, rgba(0,0,0,.12) 88%, transparent 100%);
+}
+.hero .eyebrow { margin-top: 2px; font-size: 12.5px; letter-spacing: .26em; }
+.hero-names { margin: 8px 0 0; font-weight: 400; line-height: 1; white-space: nowrap; outline: none; }
+.hero-names .name, .hero-names .amp {
+  display: inline-block; font-family: var(--f-script);
+  font-size: clamp(42px, 12.8vw, 56px); line-height: 1.2;
+  padding: .04em .1em .16em;                      /* room for the swashes inside the foil fill */
   background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.hero-names .amp { display: block; font-family: var(--f-script); font-size: 34px; line-height: .9; color: var(--gold-line); margin: -2px 0 -4px; }
-.hero .divider { margin-top: 22px; }
+.hero-names .amp { font-size: clamp(32px, 9.4vw, 42px); padding: 0 .02em .2em; }
+.hero .divider { margin-top: 12px; }
 
 .lanterns { position: absolute; inset: 0 0 auto 0; height: 0; pointer-events: none; }
 .lantern { position: absolute; top: 0; width: 30px; transform-origin: 50% 0; animation: sway 7s ease-in-out infinite alternate; }
@@ -460,6 +467,9 @@ a { color: inherit; }
 .sc-foot .link-btn { position: relative; z-index: 1; }
 .sc-after { pointer-events: none; margin: 0; font-size: 18px; font-style: italic; color: var(--ink-soft); opacity: 0; transform: translateY(6px); transition: opacity 1s ease .5s, transform 1s ease .5s; }
 .scratch.is-complete .sc-after { opacity: 1; transform: none; }
+.sc-after > span { display: block; }
+.sc-after .sa-hijri { margin-top: 6px; font-size: 17px; color: var(--gold-ink); }
+.sc-after .sa-hijri i, .facts .f-hijri i { font-size: 14px; color: var(--ink-soft); letter-spacing: .02em; }
 .link-btn {
   display: inline-flex; align-items: center; min-height: 44px; margin: 0; padding: 6px 12px;
   background: none; border: 0; cursor: pointer;
@@ -489,6 +499,8 @@ a { color: inherit; }
 .facts .f-date { font-size: 30px; font-weight: 500; line-height: 1.25; letter-spacing: .04em; font-variant-numeric: lining-nums; color: var(--espresso); }
 .facts .f-time { font-size: 19px; font-variant-numeric: lining-nums; color: var(--ink); }
 .facts .f-venue { margin-top: 2px; font-size: 19px; font-style: italic; color: var(--ink); }
+.facts .f-hijri { display: flex; flex-direction: column; align-items: center; margin-top: 2px; font-style: italic; font-size: 20px; line-height: 1.35; color: var(--gold-ink); }
+.facts .f-rule { width: 120px; height: 16px; margin: 12px auto 6px; color: var(--gold-line); }
 .couple-names {
   margin: 44px 0 0; font-family: var(--f-script); font-weight: 400;
   font-size: clamp(50px, 15vw, 64px); line-height: 1.15;
@@ -525,7 +537,8 @@ a { color: inherit; }
 .tl-node { grid-column: 2; grid-row: 1; justify-self: center; width: 9px; height: 9px; rotate: 45deg; background: var(--cream); box-shadow: 0 0 0 1px var(--gold-line); transition: background-color .6s ease, box-shadow .6s ease; }
 .tl-item.passed .tl-node { background: var(--gold-line); box-shadow: 0 0 0 1px var(--gold-line), 0 0 0 4px rgba(212,175,55,.12); }
 .tl-time { display: block; font-size: 32px; font-weight: 500; font-style: italic; line-height: 1.1; font-variant-numeric: lining-nums; color: var(--gold-text); }
-.tl-title { margin: 6px 0 0; font-size: 17.5px; line-height: 1.35; color: var(--ink); text-wrap: balance; }
+.tl-note { margin: 2px 0 0; font-size: 16.5px; font-style: italic; line-height: 1.35; color: var(--ink-soft); text-wrap: balance; }
+.tl-title { margin: 6px 0 0; font-size: 19px; line-height: 1.35; color: var(--ink); text-wrap: balance; }
 .tl-motif svg { width: clamp(66px, 20vw, 84px); height: auto; color: var(--gold-text); overflow: visible; }
 
 /* ======================================================================
@@ -549,7 +562,20 @@ a { color: inherit; }
 .loc-pin { transform-box: fill-box; transform-origin: 50% 100%; }
 .loc-pulse { transform-box: fill-box; transform-origin: 50% 50%; animation: pulse 3.4s ease-out infinite; }
 @keyframes pulse { 0% { opacity: .55; transform: scale(.4); } 100% { opacity: 0; transform: scale(1.6); } }
-.loc-name { margin: 30px 0 0; font-size: 23px; font-weight: 600; letter-spacing: .06em; line-height: 1.35; color: var(--espresso); text-wrap: balance; }
+.loc-address { margin: 30px 0 0; font-style: normal; display: grid; gap: 2px; }
+.loc-street { font-size: 25px; font-weight: 600; letter-spacing: .04em; line-height: 1.3; color: var(--espresso); }
+.loc-city { font-size: 14px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; padding-left: .3em; color: var(--gold-ink); }
+.loc-parking {
+  display: flex; align-items: center; gap: 14px; max-width: 320px; margin: 30px auto 0; padding: 14px 18px;
+  border-top: 1px solid rgba(201,172,102,.45); border-bottom: 1px solid rgba(201,172,102,.45);
+  text-align: left;
+}
+.lp-icon {
+  flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--gold-line); font-size: 19px; font-weight: 600; line-height: 1; color: var(--gold-ink);
+}
+.loc-parking p { margin: 0; font-size: 17px; font-style: italic; line-height: 1.4; color: var(--ink); }
+.lp-label { display: block; margin-bottom: 1px; font-size: 12px; font-style: normal; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: var(--gold-ink); }
 .loc-when { margin: 6px 0 0; font-size: 17px; font-style: italic; color: var(--ink-soft); }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -562,31 +588,11 @@ a { color: inherit; }
 }
 .btn:active { transform: scale(.98); }
 .btn svg { width: 16px; height: 16px; flex: none; }
-.btn + .btn { margin-left: 8px; }
-
-/* ======================================================================
-   DRESSCODE
-   ====================================================================== */
-.dress-text { margin: 22px auto 0; max-width: 30ch; font-size: 20px; line-height: 1.55; color: var(--ink); text-wrap: balance; }
-.swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 340px; margin: 38px auto 0; padding: 0; list-style: none; }
-.swatch { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.swatch svg { width: clamp(48px, 14vw, 58px); height: auto; overflow: visible; filter: drop-shadow(0 8px 12px rgba(110,84,40,.14)); }
-.swatch span { font-size: 17px; font-style: italic; font-weight: 500; color: var(--ink); }
 
 /* ======================================================================
    RSVP + FOOTER
    ====================================================================== */
-.rsvp-text { margin: 20px auto 0; max-width: 28ch; font-size: 20px; color: var(--ink); text-wrap: balance; }
-.rsvp-deadline { margin: 8px 0 0; font-size: 17px; font-style: italic; color: var(--ink-soft); }
-.rsvp-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-.rsvp-actions .btn { margin: 26px 0 0; }
-.dev-note {
-  margin: 28px auto 0; max-width: 300px; padding: 12px 16px;
-  border: 1px dashed rgba(168,133,44,.5); border-radius: 10px;
-  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-size: 12.5px; font-weight: 500; line-height: 1.5; color: #7A6A3A; background: rgba(255,255,255,.5);
-}
-.dev-note strong { display: block; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: 11px; margin-bottom: 2px; }
+.rsvp-text { margin: 20px auto 0; max-width: 26ch; font-size: 21px; line-height: 1.55; color: var(--ink); text-wrap: balance; }
 
 .footer { padding: 30px var(--gutter) calc(64px + env(safe-area-inset-bottom)); text-align: center; }
 .footer .mini-seal { width: 76px; height: 76px; margin: 0 auto; filter: drop-shadow(0 6px 10px rgba(92,70,36,.18)); }
@@ -594,13 +600,13 @@ a { color: inherit; }
 .footer .f-date { margin: 4px 0 0; font-size: 13px; font-weight: 600; letter-spacing: .3em; padding-left: .3em; color: var(--gold-ink); }
 
 /* ======================================================================
-   MUSIC BUTTON (hidden until a music file is configured)
+   MUSIC BUTTON (appears after the envelope is opened)
    ====================================================================== */
 .music-btn {
   position: fixed; z-index: 40;
   right: max(16px, calc((100vw - var(--col)) / 2 + 16px));
   bottom: max(18px, calc(env(safe-area-inset-bottom) + 10px));
-  width: 50px; height: 50px; border-radius: 50%;
+  width: 46px; height: 46px; border-radius: 50%;
   display: grid; place-items: center; padding: 0; cursor: pointer;
   border: 1px solid rgba(201,172,102,.7);
   background: rgba(253,251,247,.82); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
@@ -634,6 +640,7 @@ a { color: inherit; }
   .emb-bottom { display: none; }
 }
 @media (max-width: 350px) {
+  .lantern.l2 { --len: 58px; right: 5%; }
   body { font-size: 18px; }
   .union { gap: 3px; }
   .union .op { font-size: 22px; }
@@ -689,16 +696,16 @@ a { color: inherit; }
     <circle cx="100" cy="100" r="57" fill="none" stroke="url(#goldFoil)" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="0 5.3" opacity=".9"/>
     <circle cx="100" cy="100" r="52.5" fill="none" stroke="url(#goldFoil)" stroke-width=".7" opacity=".85"/>
     <!-- monogram -->
-    <g font-family="Great Vibes, Snell Roundhand, cursive" text-anchor="middle">
+    <g font-family="EZ Script, Snell Roundhand, cursive" text-anchor="middle">
       <g fill="#6E5320" opacity=".28" transform="translate(.9 1.2)">
-        <text x="73" y="113" font-size="56" class="seal-l1">E</text>
-        <text x="101" y="106" font-size="22">&amp;</text>
-        <text x="129" y="120" font-size="56" class="seal-l2">Z</text>
+        <text x="74" y="114" font-size="55" class="seal-l1">E</text>
+        <text x="100" y="107" font-size="21">&amp;</text>
+        <text x="124" y="118" font-size="47" class="seal-l2">Z</text>
       </g>
       <g fill="url(#goldFoil)">
-        <text x="73" y="113" font-size="56" class="seal-l1">E</text>
-        <text x="101" y="106" font-size="22">&amp;</text>
-        <text x="129" y="120" font-size="56" class="seal-l2">Z</text>
+        <text x="74" y="114" font-size="55" class="seal-l1">E</text>
+        <text x="100" y="107" font-size="21">&amp;</text>
+        <text x="124" y="118" font-size="47" class="seal-l2">Z</text>
       </g>
     </g>
     <!-- gloss -->
@@ -980,14 +987,17 @@ a { color: inherit; }
       <svg class="sprig sprig-l" aria-hidden="true"><use href="#sprig"/></svg>
       <svg class="sprig sprig-r" aria-hidden="true"><use href="#sprig"/></svg>
       <div class="arch-content">
-        <svg class="star8 enter" style="--ed:.45s" aria-hidden="true"><use href="#star8"/></svg>
-        <p class="eyebrow enter" style="--ed:.55s">Willkommen zur Hochzeit von</p>
+        <figure class="hero-photo enter" style="--ed:.25s">
+          <img src="./assets/images/enis-zainab-kindheit.jpg" width="840" height="900" decoding="async" fetchpriority="high"
+               alt="Enis und Zainab als Kinder – lachend Arm in Arm am Strand">
+        </figure>
+        <p class="eyebrow enter" style="--ed:.6s">Willkommen zur Hochzeit von</p>
         <h1 class="hero-names" id="heroTitle" tabindex="-1">
-          <span class="name enter" style="--ed:.7s" data-bind="couple.groom">Enis</span>
-          <span class="amp enter" style="--ed:.85s">&amp;</span>
-          <span class="name enter" style="--ed:1s" data-bind="couple.bride">Zainab</span>
+          <span class="name enter" style="--ed:.75s" data-bind="couple.groom">Enis</span>
+          <span class="amp enter" style="--ed:.9s">&amp;</span>
+          <span class="name enter" style="--ed:1.05s" data-bind="couple.bride">Zainab</span>
         </h1>
-        <svg class="divider enter" style="--ed:1.2s" aria-hidden="true"><use href="#divider"/></svg>
+        <svg class="divider enter" style="--ed:1.25s" aria-hidden="true"><use href="#divider"/></svg>
       </div>
     </div>
 
@@ -1003,7 +1013,7 @@ a { color: inherit; }
     <p class="scratch-sub reveal" style="--rd:.1s"><svg class="star-inline" aria-hidden="true"><use href="#star4"/></svg>Rubbele die Felder frei<svg class="star-inline" aria-hidden="true"><use href="#star4"/></svg></p>
     <div class="sc-grid reveal" style="--rd:.2s" id="scratchGrid"></div>
     <div class="sc-foot">
-      <p class="sc-after" aria-live="polite"></p>
+      <p class="sc-after" aria-live="polite"><span class="sa-main"></span><span class="sa-hijri"><i>entsprechend dem</i> <span data-bind="event.hijriDisplay"></span></span></p>
       <button class="link-btn reveal" style="--rd:.3s" type="button" id="revealAll">Datum vollständig anzeigen</button>
     </div>
   </section>
@@ -1032,8 +1042,10 @@ a { color: inherit; }
     <div class="facts reveal" style="--rd:.1s">
       <span class="f-day" data-bind="event.weekday">Freitag</span>
       <span class="f-date" data-bind="event.dateDisplay">02.10.2026</span>
+      <span class="f-hijri"><i>entsprechend dem</i><span data-bind="event.hijriDisplay">20. Rabīʿ ath-Thānī 1448</span></span>
+      <svg class="f-rule" viewBox="0 0 150 18" aria-hidden="true"><use href="#divider"/></svg>
       <span class="f-time" data-bind="event.timeDisplay">19:30 Uhr</span>
-      <span class="f-venue" data-bind="event.venue">Islamisches Zentrum Zürich</span>
+      <span class="f-venue"><span data-bind="location.street">Kurt-Früh-Weg 4</span>, <span data-bind="location.city">8050 Zürich</span></span>
     </div>
     <h2 class="couple-names reveal" id="names-h"><span data-bind="couple.groom">Enis</span> &amp; <span data-bind="couple.bride">Zainab</span></h2>
 
@@ -1100,39 +1112,27 @@ a { color: inherit; }
         </g>
       </svg>
     </div>
-    <p class="loc-name reveal" data-bind="location.name">Islamisches Zentrum Zürich</p>
+    <address class="loc-address reveal">
+      <span class="loc-street" data-bind="location.street">Kurt-Früh-Weg 4</span>
+      <span class="loc-city" data-bind="location.city">8050 Zürich</span>
+    </address>
     <p class="loc-when reveal" style="--rd:.05s"><span data-bind="event.weekday">Freitag</span>, <span data-bind="event.dateDisplay">02.10.2026</span> · <span data-bind="event.timeDisplay">19:30 Uhr</span></p>
-    <a class="btn reveal" style="--rd:.1s" id="mapsBtn" href="https://www.google.com/maps/search/?api=1&amp;query=Islamisches%20Zentrum%20Z%C3%BCrich" target="_blank" rel="noopener">
+    <a class="btn reveal" style="--rd:.1s" id="mapsBtn" href="https://www.google.com/maps/search/?api=1&amp;query=Kurt-Fr%C3%BCh-Weg%204%2C%208050%20Z%C3%BCrich" target="_blank" rel="noopener">
       <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 15S3 9.6 3 6.2A5 5 0 0 1 13 6.2C13 9.6 8 15 8 15Z" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="8" cy="6.2" r="1.8" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>
       In Google Maps öffnen
     </a>
+    <div class="loc-parking reveal" style="--rd:.15s">
+      <span class="lp-icon" aria-hidden="true">P</span>
+      <p><span class="lp-label">Parkieren</span><span data-bind="location.parking">In der weissen Zone oder im Parkhaus gegenüber.</span></p>
+    </div>
   </section>
 
-  <!-- DRESSCODE -->
-  <section class="section" id="dresscode" aria-labelledby="dress-h">
-    <h2 class="h-script reveal" id="dress-h">Dresscode</h2>
-    <svg class="divider reveal" aria-hidden="true"><use href="#divider"/></svg>
-    <p class="dress-text reveal" style="--rd:.1s" data-bind="dresscode.text"></p>
-    <ul class="swatches reveal" style="--rd:.2s" id="swatches"></ul>
-  </section>
 
   <!-- RSVP -->
   <section class="section" id="rsvp" aria-labelledby="rsvp-h">
     <h2 class="h-script reveal" id="rsvp-h">Rückmeldung</h2>
     <svg class="divider reveal" aria-hidden="true"><use href="#divider"/></svg>
-    <p class="rsvp-text reveal" style="--rd:.1s">Bitte gebt uns kurz Bescheid, ob ihr dabei seid.</p>
-    <p class="rsvp-deadline" id="rsvpDeadline" hidden></p>
-    <div class="rsvp-actions reveal" style="--rd:.2s" id="rsvpActions" hidden>
-      <a class="btn" id="rsvpWhatsapp" hidden target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.2 13.8L3 11A6 6 0 1 1 5.2 13.1Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
-        Per WhatsApp antworten
-      </a>
-      <a class="btn" id="rsvpEmail" hidden>
-        <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.8" y="3.5" width="12.4" height="9" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M2.4 4.4L8 9L13.6 4.4" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>
-        Per E-Mail antworten
-      </a>
-    </div>
-    <p class="dev-note" id="rsvpNote" hidden><strong>Vorschau-Hinweis</strong>Rückmelde-Kontakt noch nicht konfiguriert – WhatsApp-Nummer oder E-Mail in <code>WEDDING.rsvp</code> (index.html) eintragen.</p>
+    <p class="rsvp-text reveal" style="--rd:.1s" data-bind="rsvp.text">Bitte gebt demjenigen kurz Bescheid, von dem ihr den Link erhalten habt.</p>
   </section>
 
   <footer class="footer">
@@ -1324,7 +1324,7 @@ a { color: inherit; }
     grid.appendChild(wrap);
     cards.push(makeScratch($('.sc-card', wrap), i));
   });
-  $('.sc-after').textContent = `${W.event.weekday} · ${W.event.timeDisplay}`;
+  $('.sc-after .sa-main').textContent = `${W.event.weekday} · ${W.event.timeDisplay}`;
 
   function makeScratch(card, index) {
     const canvas = $('canvas', card);
@@ -1581,12 +1581,13 @@ a { color: inherit; }
     li.className = 'tl-item reveal';
     li.style.setProperty('--rd', '.05s');
     li.innerHTML =
-      `<div class="tl-text"><time class="tl-time"></time><p class="tl-title"></p></div>` +
+      `<div class="tl-text"><time class="tl-time"></time><p class="tl-title"></p><p class="tl-note"></p></div>` +
       `<span class="tl-node" aria-hidden="true"></span>` +
       `<div class="tl-motif" aria-hidden="true"><svg viewBox="${motifBox(it.motif)}"><use href="#m-${it.motif}"/></svg></div>`;
     $('.tl-time', li).textContent = it.time;
     $('.tl-time', li).setAttribute('datetime', it.time);
     $('.tl-title', li).textContent = it.title.replace(/ \//g, '\u00A0/');
+    if (it.note) $('.tl-note', li).textContent = it.note; else $('.tl-note', li).remove();
     tl.appendChild(li);
     io.observe(li);
   });
@@ -1647,65 +1648,53 @@ a { color: inherit; }
   document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); });
 
   /* ------------------------------------------------------------------
-     10. Location, dresscode, RSVP
+     10. Location
      ------------------------------------------------------------------ */
   const mapsBtn = $('#mapsBtn');
   mapsBtn.href = W.location.mapsUrl ||
-    'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(W.location.mapsQuery || W.location.name);
-
-  const sw = $('#swatches');
-  W.dresscode.colors.forEach((c, i) => {
-    const li = document.createElement('li');
-    li.className = 'swatch';
-    const gid = 'sw' + i;
-    li.innerHTML =
-      `<svg viewBox="0 0 60 86" aria-hidden="true"><defs><linearGradient id="${gid}" x1="0" y1="0" x2=".8" y2="1">` +
-      `<stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".06"/></linearGradient></defs>` +
-      `<path d="M1.5 84V37C1.5 19 20 7 30 1.5C40 7 58.5 19 58.5 37V84Z" fill="${c.hex}"/>` +
-      `<path d="M1.5 84V37C1.5 19 20 7 30 1.5C40 7 58.5 19 58.5 37V84Z" fill="url(#${gid})" stroke="#C9AC66" stroke-width=".9"/>` +
-      `<path d="M6 84V38C6 23 22 13 30 8C38 13 54 23 54 38V84" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width=".6"/></svg>` +
-      `<span></span>`;
-    $('span', li).textContent = c.name;
-    sw.appendChild(li);
-  });
-
-  (function rsvp() {
-    const r = W.rsvp || {};
-    const wa = String(r.whatsapp || '').replace(/[^\d]/g, '');
-    const mail = String(r.email || '').trim();
-    if (r.deadline) { const d = $('#rsvpDeadline'); d.textContent = 'Bitte ' + r.deadline + '.'; d.hidden = false; }
-    if (!wa && !mail) { $('#rsvpNote').hidden = false; return; }
-    $('#rsvpActions').hidden = false;
-    if (wa) { const a = $('#rsvpWhatsapp'); a.href = `https://wa.me/${wa}?text=${encodeURIComponent(r.message || '')}`; a.hidden = false; }
-    if (mail) {
-      const a = $('#rsvpEmail');
-      a.href = `mailto:${mail}?subject=${encodeURIComponent('Rückmeldung Hochzeit ' + W.couple.groom + ' & ' + W.couple.bride)}&body=${encodeURIComponent(r.message || '')}`;
-      a.hidden = false;
-    }
-  })();
+    'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(W.location.mapsQuery || `${W.location.street}, ${W.location.city}`);
 
   /* ------------------------------------------------------------------
-     11. Optional background music (only if W.music.src is set)
+     11. Background music (starts from the seal tap, never on load)
      ------------------------------------------------------------------ */
   const musicBtn = $('#musicBtn');
   let audio = null, audioOk = false, userPaused = false;
   function startMusic() {
     if (!W.music || !W.music.src || audio) return;
-    audio = new Audio(W.music.src);
-    audio.loop = true;
-    audio.preload = 'auto';
-    audio.volume = clamp(W.music.volume ?? 0.6, 0, 1);
-    audio.addEventListener('error', () => { audioOk = false; musicBtn.hidden = true; });
-    audio.addEventListener('playing', () => { audioOk = true; setPressed(true); });
-    audio.addEventListener('pause', () => setPressed(false));
-    const p = audio.play();
-    if (p && p.catch) p.catch(() => { /* autoplay refused – the button lets the guest start it */ audioOk = true; setPressed(false); });
+    try {
+      audio = new Audio(W.music.src);
+      audio.loop = true;                                 // the track is a loop: repeat seamlessly
+      audio.preload = 'auto';
+      const target = clamp(W.music.volume ?? 0.8, 0, 1);
+      audio.volume = 0.5;
+      const canFade = Math.abs(audio.volume - 0.5) < 0.01 && !reduceMotion.matches;  // iOS: volume is read-only
+      audio.volume = canFade ? 0 : target;
+      audio.addEventListener('error', () => { audioOk = false; musicBtn.hidden = true; });
+      audio.addEventListener('playing', () => { audioOk = true; setPressed(true); });
+      audio.addEventListener('pause', () => setPressed(false));
+      const p = audio.play();                            // inside the tap gesture → allowed on iOS
+      if (p && p.catch) p.catch(() => { /* blocked – the button lets the guest start it */ if (audio.error) return; audioOk = true; setPressed(false); });
+      if (canFade) {
+        const t0 = performance.now(), dur = (W.music.fadeInSeconds || 3) * 1000;
+        const step = (t) => {
+          if (!audio || audio.paused) { if (audio) audio.volume = target; return; }
+          const k = clamp((t - t0) / dur, 0, 1);
+          audio.volume = target * k * k;
+          if (k < 1) requestAnimationFrame(step);
+        };
+        audio.addEventListener('playing', () => requestAnimationFrame(step), { once: true });
+      }
+    } catch (e) { audio = null; musicBtn.hidden = true; }
   }
   function setPressed(on) {
     musicBtn.setAttribute('aria-pressed', String(on));
     musicBtn.setAttribute('aria-label', on ? 'Musik pausieren' : 'Musik abspielen');
   }
-  function showMusicButton() { if (audio && audioOk) musicBtn.hidden = false; else if (audio) audio.addEventListener('playing', () => { musicBtn.hidden = false; }, { once: true }); }
+  function showMusicButton() {
+    if (!audio || audio.error) return;
+    if (audioOk) musicBtn.hidden = false;
+    else audio.addEventListener('playing', () => { musicBtn.hidden = false; }, { once: true });
+  }
   musicBtn.addEventListener('click', () => {
     if (!audio) return;
     if (audio.paused) { userPaused = false; audio.play().catch(() => {}); } else { userPaused = true; audio.pause(); }

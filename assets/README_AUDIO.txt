@@ -1,34 +1,29 @@
-BACKGROUND MUSIC — HOW TO ADD IT LATER
-======================================
+BACKGROUND MUSIC
+================
 
-Music is intentionally not included yet. Until it is configured, the
-invitation plays nothing, shows no music button and makes no audio requests.
+File:   assets/music.mp3
+Source: "The One, But It's That Instrumental Loop Everyone's Obsessed With.mp3"
+        (renamed so the URL has no spaces or special characters)
 
-To enable it:
+How it behaves
+- Nothing plays when the page opens.
+- Music starts when the guest taps the E & Z wax seal (browsers only allow
+  sound after a tap) and fades in over a few seconds on desktop and Android.
+- It loops. A round play/pause button appears in the bottom-right corner after
+  the envelope has opened.
+- It pauses when the guest leaves the tab and resumes when they come back.
+- If playback is blocked or the file is missing, the invitation still works
+  normally.
 
-1. Put the music file into this folder and name it:
+Volume
+The file was made 6 dB quieter with the lossless MP3Gain method (only the
+frames' gain fields change; nothing is re-encoded). This matters for iPhones,
+where websites cannot set the volume at all. On desktop and Android,
+music.volume in the WEDDING config (index.html) sets the level, 0.8 by default.
 
-       assets/music.mp3
+Replacing the music
+Put the new file at assets/music.mp3, or change music.src in the WEDDING
+config. Keep the relative "./" path so it works locally and on GitHub Pages.
+Set src: '' to switch the music off completely.
 
-   (MP3 is the safest choice for iPhone Safari and WhatsApp's in-app browser.
-   Keep it small — about 2–4 MB, 128 kbps is plenty.)
-
-2. Open index.html and, in the WEDDING configuration at the top, change
-
-       music: {
-         src: '',
-
-   to
-
-       music: {
-         src: './assets/music.mp3',
-
-   Keep the leading "./" — the relative path is what makes it work both when
-   opening the file locally and later on GitHub Pages (/Wedding-E-Z/).
-
-3. That's it. Playback starts when the guest taps the wax seal (browsers only
-   allow sound after a tap), and a round play/pause button appears in the
-   bottom-right corner. The music pauses automatically when the guest leaves
-   the tab and resumes when they return. Adjust loudness with music.volume.
-
-Only use music you have the right to use.
+Only use music you have the right to use, especially on a public website.
